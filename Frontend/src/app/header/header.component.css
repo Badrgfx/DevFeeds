@@ -1,0 +1,32 @@
+  .header {
+    padding-right: 10rem;
+    padding-left: 10rem;
+  }
+  
+  .header {
+    padding:5px;
+    padding-bottom: 1rem;
+    border-bottom: .05rem solid #e5e5e5;
+  }
+  
+  .header h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 3rem;
+  }
+  
+   @media screen and (min-width: 48em) {
+    .header,
+    .marketing {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    
+    .header {
+      margin-bottom: 2rem;
+    }
+
+}
+.logout{
+  cursor: pointer;
+}

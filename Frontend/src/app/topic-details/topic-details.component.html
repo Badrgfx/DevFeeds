@@ -1,0 +1,18 @@
+<app-loading [condition]="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+    <h3>{{topic.title}}</h3>
+    <p>{{topic.description}}<p>
+    <img *ngIf="!isLoading" width="1100" height="440" src="http://localhost:8080/api/files/{{topic.id}}.jpg"> 
+    <p>{{topic.content}}</p>
+    <button [ngClass]=" topic.votedByConnectuser ? 'btn-primary' : 'btn-outline-primary' "
+    (click)="VoteTopicStyleChange()"
+    type="button" class="btn btn-sm float-right">{{topic.sizeVotes}} Upvote
+            <i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i>    
+    </button>    
+    <div>
+        <span class="badge badge-success">Posted {{ topic.datePublication | date: 'dd/MM/yyyy hh:mm:ss' }} By {{user.username}} </span>
+    </div> 
+    <hr>
+</div>
+<span class="badge badge-primary">{{topic.sizeComments}} comments</span>
+<app-comments></app-comments>

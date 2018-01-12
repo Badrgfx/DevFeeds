@@ -1,0 +1,47 @@
+<form [formGroup]="addTopicForm" (ngSubmit)="createTopic()">
+    <fieldset>
+      <legend>New Topic</legend>
+      <div *ngIf="stillUpload" class="progress">
+          <div class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+            aria-valuemin="0" aria-valuemax="100"
+            [ngStyle]="{width:progress.percentage+'%'}">
+            {{progress.percentage}}%</div>
+        </div>
+      <div class="form-group">
+          <label class="col-form-label" for="inputDefault">Title</label>
+          <input class="form-control"  id="inputDefault" formControlName="title" type="text">
+          <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
+            <div *ngIf="title.errors['required']">title is required.</div>
+            <div *ngIf="title.errors['minlength']">title sould be minimum {{ title.errors['minlength'].requiredLength }} characters.</div>
+            <div *ngIf="title.errors['maxlength']">title sould be maximum {{ title.errors['maxlength'].requiredLength }} characters.</div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="inputDefault">Description</label>
+            <input class="form-control"  id="inputDefault" formControlName="description" type="text">
+            <div *ngIf="description.touched && description.invalid" class="alert alert-danger">
+                <div *ngIf="description.errors['required']">description is required.</div>
+                <div *ngIf="description.errors['minlength']">description sould be minimum {{ description.errors['minlength'].requiredLength }} characters.</div>
+                <div *ngIf="description.errors['maxlength']">description sould be maximum {{ description.errors['maxlength'].requiredLength }} characters.</div>      
+              </div>
+          </div>
+      <div class="form-group">
+        <label for="exampleTextarea">Content</label>
+        <textarea class="form-control" id="exampleTextarea" formControlName="content" rows="3"></textarea>
+        <div *ngIf="content.touched && content.invalid" class="alert alert-danger">
+            <div *ngIf="content.errors['required']">content is required.</div>
+            <div *ngIf="content.errors['minlength']">content sould be minimum {{ content.errors['minlength'].requiredLength }} characters.</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Image</label>
+        <label class="btn btn-default">
+          <input (change)="selectFile($event)" type="file" formControlName="image">
+        </label>
+        <label *ngIf="selectedFiles">{{selectedFiles.item(0).name}}</label>
+      </div>
+      <button class="btn btn-primary" [disabled]="addTopicForm.invalid && !selectedFiles">Submit</button>  
+    </fieldset>
+</form>
+

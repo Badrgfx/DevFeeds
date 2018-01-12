@@ -1,0 +1,37 @@
+<div class="btn-group float-right">
+        <button type="button" (click)="getNewestTopics()"
+         [ngClass]="typeTopics == 'new' ? 'active' : ''" 
+         class="btn btn-outline-secondary ">Most recent</button>
+
+        <button type="button"(click)="getPopularTopics()"  
+        [ngClass]="typeTopics == 'popular' ? 'active' : ''" 
+        class="btn btn-outline-primary">Most rated</button>
+</div>
+<br><br><hr>
+<app-loading [condition]="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+<ul  *ngFor="let topic of topics">  
+    <li class="media" >
+         <a  [routerLink]="['topics' , topic.id]">
+        <img src="http://localhost:8080/api/files/{{topic.id}}.jpg"/>
+         </a>
+          <div class="media-body">
+              
+              <strong class="text-success">{{ topic.title }}</strong>
+         
+              <button type="button" class="btn btn-outline-primary btn-sm float-right">
+                  {{topic.sizeComments}}  <i class="fa fa-comment" aria-hidden="true"></i></button>
+              <button 
+               [ngClass]=" topic.votedByConnectuser ? 'btn-primary' : 'btn-outline-primary' "
+               (click)="VoteTopicStyleChange(topic.id)"
+              type="button" class="btn btn-sm float-right">
+                  {{topic.sizeVotes}}  <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+              
+              <p>{{ topic.description }}</p>
+          </div>
+        </li>
+        <hr>
+</ul>   
+<button *ngIf="!lastElement" (click)="loadMoreTopics()" type="button" class="btn btn-outline-primary btn-lg btn-block">Load more</button>
+<button *ngIf="lastElement" type="button" disabled class="btn btn-outline-primary btn-lg btn-block">Last topic</button>
+</div>

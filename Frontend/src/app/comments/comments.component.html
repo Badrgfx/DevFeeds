@@ -1,0 +1,25 @@
+<form [formGroup]="addCommentForm" (ngSubmit)="commentTopic()">
+    <div class="form-group">      
+            <label for="comment">Your Comment</label>
+    </div>  
+    <div class="form-group">     
+            <textarea  formControlName="content" name="comment" class="form-control" rows="3"></textarea>
+    </div>  
+          <button class="btn btn-primary" [disabled]="addCommentForm.invalid">Send</button>
+</form>
+<hr>
+<app-loading [condition]="isLoading"></app-loading>
+<div *ngIf="!isLoading">
+<ul *ngFor="let comment of comments">
+<li class="media">
+   <img src="https://www.rit.edu/science/sites/rit.edu.science/files/headshots/man-placeholder_0.jpg"/>
+  <div>
+   <strong class="text-success">@{{comment.user.username}}</strong>
+   <p>{{comment.content}}</p>
+       </div>
+     </li>
+     <hr>
+</ul>  
+<button *ngIf="!lastElement" (click)="loadMoreComments()" type="button" class="btn btn-outline-primary btn-lg btn-block">Load more</button>
+<button *ngIf="lastElement" type="button" disabled class="btn btn-outline-primary btn-lg btn-block">Last Comment</button>
+</div>

@@ -22,9 +22,9 @@ cd into the `Frontend` folder and run:
 ```bash
 npm install
 ```
-To run Client app (angular cli project) :
+To run Client app :
 
 ```bash
-ng serve
+npm start
 ```
 

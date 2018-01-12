@@ -1,4 +1,4 @@
 const secrets = {
-    facebookAppId: '1905628066433618'
+    facebookAppId: ''
 };
 export default secrets;

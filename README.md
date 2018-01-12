@@ -8,6 +8,7 @@ Example of a Feeds app with Upvoting System and Facebook sign in/up with Spring 
 ## Getting Started
 
 1 - Put your own facebook app id in Frontend/src/app/services/Secrets.ts
+
 2 - Configure the Database in Backend/src/main/resources/application.properties the app use Mysql by default
 
 To run the server, cd into the `Backend` folder and run:
